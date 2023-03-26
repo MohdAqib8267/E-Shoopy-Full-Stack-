@@ -1,0 +1,18 @@
+.Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100vh;
+    margin: auto;
+    padding: auto;
+}
+.loginInput{
+    padding: 10px;
+}
+.inputButton{
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}

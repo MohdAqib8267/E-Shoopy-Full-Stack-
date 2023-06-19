@@ -19,6 +19,7 @@ const Products = ({cat,filters,sort}) => {
   useEffect(()=>{
     const getProducts = async()=>{
       try {
+        // console.log(cat);
         const res = await axios.get(
           cat
             ? `http://localhost:4000/api/products/?Category=${cat}`
@@ -70,13 +71,19 @@ const Products = ({cat,filters,sort}) => {
     }
   },[sort])
   return (
-    <Container>
-      {cat ? filteredProducts.map((item)=>
+    <Container style={{border: "0.5rem solid lightgray",borderRadius: "30px",margin:'2rem',display: "flex",flexDirection:'column'}}>
+      {/* <div style={{justifyContent:"center",display:'flex',color:'orangered'}}>
+        <h2>Trending Collentions</h2>
+      </div> */}
+      <div style={{display: "flex",flexWrap: "wrap"}}>
+        {cat ? filteredProducts.map((item)=>
         <Product item={item} key={item.id}/>
       )
-      :   popularProducts.slice(0,8).map((item)=>
-      <Product item={item} key={item.id}/>
+      :  products.slice(-9).reverse().map((item) =>
+      <Product item={item} key={item.id} />
     ) }
+      </div>
+      
     </Container>
   )
 }

@@ -8,6 +8,8 @@ import Navbar from '../Components/Navbar';
 import NewsLetter from '../Components/NewsLetter';
 import { publicRequest } from '../requestMethods';
 import { mobile } from '../responsive';
+import Button from '@mui/material/Button';
+
 
 import { addProducts } from '../redux/cartRedux';
 import {useDispatch} from 'react-redux'
@@ -24,7 +26,7 @@ flex: 1;
 `;
 const Image = styled.img`
 width: 100%;
-height: 90vh;
+height: 75vh;
 object-fit: cover;
 ${mobile({height:"50vh"})};
 `;
@@ -35,16 +37,21 @@ padding: 0px 50px;
 ${mobile({padding:"10px"})};
 `;
 const Title = styled.h1`
-font-weight: 200;
+font-weight: bold;
+color:purple;
 `;
 const Desc = styled.p`
   margin: 20px 0px;
   ${mobile({margin:"5px 0px"})};
+  color:gray;
+  font-size:0.8rem;
+
 `;
 
 const Price = styled.span`
   font-weight: 100;
   font-size: 40px;
+  color: blue;
 `;
 
 const FilterContainer = styled.div`
@@ -63,6 +70,7 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
+  
 `;
 
 const FilterColor = styled.div`
@@ -107,17 +115,17 @@ const Amount = styled.span`
 `;
 
 
-const Button = styled.button`
-  padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
-  cursor: pointer;
-  font-weight: 500;
-  &:hover{
-      background-color: #f8f4f4;
-  }
-  ${mobile({padding: "5px"})};
-`;
+// const Button = styled.button`
+//   padding: 15px;
+//   border: 2px solid teal;
+//   background-color: white;
+//   cursor: pointer;
+//   font-weight: 500;
+//   &:hover{
+//       background-color: #f8f4f4;
+//   }
+//   ${mobile({padding: "5px"})};
+// `;
 
 const Product = () => {
   const location = useLocation();
@@ -126,7 +134,7 @@ const Product = () => {
   const [product,setProduct]=useState({});
   const [quantity,setQuantity]=useState(1);
   const [color,setColor] = useState();
-  const [size,setSize]=useState();
+  const [size,setSize]=useState();  
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -206,11 +214,27 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={()=>handleQuantity("inc")}/>
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={handleClick} variant="contained">ADD TO CART</Button>
+            {/* <Button onClick={handleClick}>ADD TO CART</Button> */}
           </AddContainer>
-
+            
+            <div style={{display:'flex', flexDirection:'column',color:'lightslategray',gap:'0.5rem',marginTop:'1rem'}}>
+              <span>Vendor: <b>Polo</b></span>
+              <span>Product Type: <b>Man</b></span>
+              
+              
+              {product.category && (
+  <span>
+    Tag: <b>{product.category.map(category => category.charAt(0).toUpperCase() + category.slice(1)).join(", ")}</b>
+  </span>
+)}
+                  
+                
+              
+              
+            </div>
         </InfoContainer>
-
+                  
         </Wrapper>
         <NewsLetter/>
         <Footer />

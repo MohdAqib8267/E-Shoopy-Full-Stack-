@@ -22,7 +22,7 @@ const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).
       <Switch>
       <Route path="/login">
             <Login />
-          </Route>
+      </Route>
       {admin && <>
       <Topbar />
       <div className="container">

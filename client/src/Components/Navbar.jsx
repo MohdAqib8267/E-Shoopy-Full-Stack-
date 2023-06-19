@@ -4,6 +4,10 @@ import React from "react";
 import styled from "styled-components";
 import {mobile} from '../responsive'
 import {useSelector} from 'react-redux'
+// import CustomizedMenus from '../Special_comp/WhyUs_button/WhyUs_button'
+// import Categories_item from '../Special_comp/WhyUs_button/WhyUs_button'
+import {CustomizedMenus,Categories_item} from '../Special_comp/WhyUs_button/WhyUs_button';
+
 import { Link } from "react-router-dom";
 
 
@@ -26,6 +30,7 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  gap: 1rem;
 `;
 
 const Language = styled.span`
@@ -72,8 +77,20 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  border:1px solid black;
+  padding:10px 5px;
+  border-radius:20px;
   ${mobile({ fontSize: "12px",marginLeft:"10px" })}
 `;
+const MenuItemBadge = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+  ${mobile({ fontSize: "12px",marginLeft:"10px" })}
+`;
+const Why_us = styled.div`
+
+`
 const Navbar = () => {
 
   const quantity = useSelector((state)=>state.cart.quantity);
@@ -84,26 +101,28 @@ const Navbar = () => {
         <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
+          <Why_us><CustomizedMenus /></Why_us>
+          <Categories_item/>
+          {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ fontSize: 16, transform: "scale(1.5)",color: "white",
     background: "grey",
     borderRadius: "0.2rem",
     padding: "1.5px"}} />
-          </SearchContainer>
+          </SearchContainer> */}
         </Left>
         <Center>
           <Logo>E-Shoppy.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
+          <MenuItem style={{color:'white',background:'black',fontWeight:'bold'}} >REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
           <Link to="/cart">
-          <MenuItem>
+          <MenuItemBadge>
             <Badge badgeContent={quantity} color="primary">
               <ShoppingCartOutlined />
             </Badge>
-          </MenuItem>
+          </MenuItemBadge>
           </Link>
         </Right>
       </Wrapper>

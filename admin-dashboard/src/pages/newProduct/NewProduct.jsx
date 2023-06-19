@@ -10,6 +10,8 @@ export default function NewProduct() {
   const [inputs,setInputs] = useState({});
   const [file,setFile] = useState(null);
   const [cat,setCat] = useState([]);
+  const [color,setColor] = useState([]);
+  const [size,setSize] = useState([]);
   const dispatch = useDispatch();
 
   const handleChange = (e) =>{
@@ -19,6 +21,12 @@ export default function NewProduct() {
   }
   const handleCat = (e) =>{
     setCat(e.target.value.split(","));
+  }
+  const handleCol = (e) =>{
+    setColor(e.target.value.split(","));
+  }
+  const handleSize = (e) =>{
+    setSize(e.target.value.split(","));
   }
   // console.log(cat);
  
@@ -58,10 +66,10 @@ export default function NewProduct() {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat };
+          const product = { ...inputs, img: downloadURL, category: cat };
           addProduct(product, dispatch);
           // console.log('File available at', downloadURL);
-          // console.log({...inputs,img:downloadURL,categories:cat});
+          console.log({...inputs,img:downloadURL,category:cat});
         });
         
       }
@@ -70,16 +78,20 @@ export default function NewProduct() {
   // console.log(file);
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
-      <form className="addProductForm">
+  <h1 className="addProductTitle">New Product</h1>
+  <form className="addProductForm">
+    <div className="row">
+      <div className="col">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="file" onChange={(e)=>setFile(e.target.files[0])} />
+          <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <div className="addProductItem">
           <label>Title</label>
           <input type="text" name="title" placeholder="Apple Airpods" onChange={handleChange} />
         </div>
+      </div>
+      <div className="col">
         <div className="addProductItem">
           <label>Description</label>
           <input type="text" name="desc" placeholder="description..." onChange={handleChange} />
@@ -88,9 +100,23 @@ export default function NewProduct() {
           <label>Price</label>
           <input type="number" name="price" placeholder="100" onChange={handleChange} />
         </div>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col">
+        <div className="addProductItem">
+          <label>Size</label>
+          <input type="text" placeholder="jeans,skirts" onChange={handleSize} />
+        </div>
+        <div className="addProductItem">
+          <label>Color</label>
+          <input type="text" placeholder="jeans,skirts" onChange={handleCol} />
+        </div>
+      </div>
+      <div className="col">
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat}/>
+          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>
@@ -99,9 +125,14 @@ export default function NewProduct() {
             <option value="false">No</option>
           </select>
         </div>
-       
-        <button className="addProductButton" onClick={handleClick}>Create</button>
-      </form>
+      </div>
     </div>
+  </form>
+  <div className="row-but">
+      <div className="col">
+        <button className="addProductButton" onClick={handleClick}>Create</button>
+      </div>
+    </div>
+</div>
   );
 }

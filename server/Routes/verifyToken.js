@@ -6,6 +6,7 @@ function verifyToken(req,res,next){
     if(token){
         //check token is valid or not
         token = token.split(" ")[1];
+        // console.log(token);
         jwt.verify(token,process.env.jwtKey, (err,valid)=>{
             if(err){
                 res.status(403).json("Token is not Valid");

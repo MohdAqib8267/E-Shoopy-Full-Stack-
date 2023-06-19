@@ -135,13 +135,13 @@ const Footer = () => {
       <Right>
       <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
+          <Room style={{marginRight:"10px"}}/> 622 Okhla , New Delhi 98336
         </ContactItem>
         <ContactItem>
           <Phone style={{marginRight:"10px"}}/> +1 234 56 78
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@lama.dev
+          <MailOutline style={{marginRight:"10px"}} /> contact@eshoppy.dev
         </ContactItem>
         <Payment src="https://tse3.mm.bing.net/th?id=OIP.gvepTiC6ctZ0R5jo3HDjvgHaBL&pid=Api&P=0" />
       </Right>

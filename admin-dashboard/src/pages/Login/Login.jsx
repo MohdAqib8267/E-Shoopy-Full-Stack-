@@ -9,6 +9,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const handleSubmit =(e)=>{
         e.preventDefault()
+        console.log({email,password})
         login(dispatch,{email,password});
     }
   return (

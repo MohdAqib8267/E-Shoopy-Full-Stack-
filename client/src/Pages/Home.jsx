@@ -8,6 +8,7 @@ import Products from '../Components/Products'
 import NewsLetter from '../Components/NewsLetter'
 import Footer from '../Components/Footer'
 
+
 const Home = () => {
   return (
     <div className='Home'>
@@ -15,6 +16,7 @@ const Home = () => {
       <Announcement/>
       <Slider />
       <Categories />
+     
       <Products />
       <NewsLetter />
       <Footer />

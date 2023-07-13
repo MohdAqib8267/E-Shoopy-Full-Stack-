@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../redux/apiCalls';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
 display: flex;
@@ -65,22 +68,37 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [name,setName]=useState("");
+  const [last_name,setLast_name]=useState("");
+  const [username,setUsername]=useState("");
+  const [email,setemail]=useState("");
+  const [password,setPassword]=useState("");
+  const [confirmPassword,setConfirmPassword]=useState("");
+  const dispatch = useDispatch();
+  const {isFetching,error}=useSelector(state=>state.user);
+  const handleClick = (e)=>{
+    e.preventDefault();
+    console.log(email,password);
+    // login(dispatch, { email, password });
+    register(dispatch,{username,email,password});
+    
+  }
   return (
     <Container>
           <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button>CREATE</Button>
+          <Input placeholder="name" onChange={(e)=>setName(e.target.value)} />
+          <Input placeholder="last name" onChange={(e)=>setLast_name(e.target.value)} />
+          <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
+          <Input placeholder="email" onChange={(e)=>setemail(e.target.value)}/>
+          <Input placeholder="password" type="password" onChange={(e)=>setPassword(e.target.value)} />
+          <Input placeholder="confirm password" type="password" onChange={(e)=>setConfirmPassword(e.target.value)} />
+          <Link to="/login" style={{width:"100%",cursor:"pointer",margin:'10px 0',textDecoration:"none"}}>
+            Already have a account? <b>Login</b>
+          </Link>
+          
+          <Button onClick={handleClick} disabled={isFetching}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

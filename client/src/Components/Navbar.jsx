@@ -3,12 +3,13 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import {mobile} from '../responsive'
-import {useSelector} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 // import CustomizedMenus from '../Special_comp/WhyUs_button/WhyUs_button'
 // import Categories_item from '../Special_comp/WhyUs_button/WhyUs_button'
 import {CustomizedMenus,Categories_item} from '../Special_comp/WhyUs_button/WhyUs_button';
 
 import { Link } from "react-router-dom";
+import { dispatchLogout } from "../redux/apiCalls";
 
 
 const Container = styled.div`
@@ -93,9 +94,15 @@ const Why_us = styled.div`
 `
 const Navbar = () => {
 
+  const dispatch = useDispatch();
   const quantity = useSelector((state)=>state.cart.quantity);
   // console.log(quantity);
+  const user = useSelector((state)=>state.user);
+  // console.log(user);
 
+  const logout=()=>{
+    dispatchLogout(dispatch);
+  }
   return (
     <Container>
         <Wrapper>
@@ -115,8 +122,11 @@ const Navbar = () => {
           <Logo>E-Shoppy.</Logo>
         </Center>
         <Right>
+          {user.currentUser?<MenuItem onClick={logout} style={{color:'white',background:'black',fontWeight:'bold'}} >Log Out</MenuItem>:
           <MenuItem style={{color:'white',background:'black',fontWeight:'bold'}} >REGISTER</MenuItem>
+          &&
           <MenuItem>SIGN IN</MenuItem>
+          }
           <Link to="/cart">
           <MenuItemBadge>
             <Badge badgeContent={quantity} color="primary">

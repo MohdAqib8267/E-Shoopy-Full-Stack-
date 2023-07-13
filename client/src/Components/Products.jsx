@@ -11,7 +11,8 @@ const Container = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
 `;
-const Products = ({cat,filters,sort}) => {
+const Products = ({cat,filters,sort,fetchAllProd}) => {
+  // console.log(fetchAllProd);
   console.log(cat,filters,sort);
   const [products,setProducts] = useState([]);
   const [filteredProducts, setFilterProducts] = useState([]);
@@ -37,21 +38,25 @@ const Products = ({cat,filters,sort}) => {
     }
     
     getProducts();
-  },[cat])
+  },[cat,fetchAllProd])
 
   
   useEffect(()=>{
 
-    cat && setFilterProducts(
+    console.log(products);
+    
+       cat && setFilterProducts(
       products.filter((item) => 
+      
         Object.entries(filters).every(([key,value])=>
           item[key].includes(value)
         )
       )
     )
+ 
 
-  },[products,cat,filters])
-
+  },[products,cat,filters,fetchAllProd])
+console.log(filteredProducts);
 
   useEffect(()=>{
     if(sort==="newest"){

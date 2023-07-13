@@ -76,6 +76,7 @@ const Link = styled.a`
   text-decoration: underline;
   cursor: pointer;
   ${mobile({fontSize:"8px"})};
+
 `;
 
 
@@ -88,7 +89,7 @@ const Login = () => {
 
   const handleClick = (e)=>{
     e.preventDefault();
-    // console.log(username,password);
+    console.log(email,password);
     login(dispatch, { email, password });
     
   }
@@ -103,7 +104,7 @@ const Login = () => {
           <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
           {error && <Error>*something went wrong...</Error>}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link href='/register' >CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

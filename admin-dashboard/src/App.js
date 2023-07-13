@@ -16,7 +16,7 @@ function App() {
 const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.others.isAdmin;
 // console.log(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.others.isAdmin);
 
-
+// const admin=true;
   return (
     <Router> 
       <Switch>

@@ -108,7 +108,7 @@ const Navbar = () => {
         <Wrapper>
         <Left>
           <Language>EN</Language>
-          <Why_us><CustomizedMenus /></Why_us>
+          {/* <Why_us><CustomizedMenus /></Why_us> */}
           <Categories_item/>
           {/* <SearchContainer>
             <Input placeholder="Search" />

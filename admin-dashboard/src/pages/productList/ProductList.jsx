@@ -14,6 +14,9 @@ export default function ProductList() {
   const products = useSelector((state)=>state.product.products);
   console.log(products);
 
+  const user=useSelector(state=>state.user);
+  const token=user.currentUser.token
+
   useEffect(()=>{
     // console.log('list');
     getProducts(dispatch);
@@ -22,7 +25,7 @@ export default function ProductList() {
 
   const handleDelete = (id) => {
     // setData(data.filter((item) => item.id !== id));
-    deleteProduct(id,dispatch);
+    deleteProduct(id,dispatch,token);
   };
 
   const columns = [

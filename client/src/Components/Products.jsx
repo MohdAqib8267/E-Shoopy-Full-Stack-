@@ -76,7 +76,7 @@ console.log(filteredProducts);
     }
   },[sort])
   return (
-    <Container style={{border: "0.5rem solid lightgray",borderRadius: "30px",margin:'2rem',display: "flex",flexDirection:'column'}}>
+    <Container style={{display: "flex",flexDirection:'column'}}>
       {/* <div style={{justifyContent:"center",display:'flex',color:'orangered'}}>
         <h2>Trending Collentions</h2>
       </div> */}
@@ -84,7 +84,7 @@ console.log(filteredProducts);
         {cat ? filteredProducts.map((item)=>
         <Product item={item} key={item.id}/>
       )
-      :  products.slice(-9).reverse().map((item) =>
+      :  products.slice(-9).reverse().slice(0,8).map((item) =>
       <Product item={item} key={item.id} />
     ) }
       </div>

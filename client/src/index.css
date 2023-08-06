@@ -1,0 +1,12 @@
+.heading{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}

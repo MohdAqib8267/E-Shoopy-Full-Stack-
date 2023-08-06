@@ -3,7 +3,7 @@ import "./newProduct.css";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export default function NewProduct() {
@@ -13,6 +13,10 @@ export default function NewProduct() {
   const [color,setColor] = useState([]);
   const [size,setSize] = useState([]);
   const dispatch = useDispatch();
+
+  const user=useSelector(state=>state.user);
+  const token=user.currentUser.token
+  // console.log(token);
 
   const handleChange = (e) =>{
     setInputs((prev)=>{
@@ -67,7 +71,7 @@ export default function NewProduct() {
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, category: cat };
-          addProduct(product, dispatch);
+          addProduct(product, dispatch,token);
           // console.log('File available at', downloadURL);
           console.log({...inputs,img:downloadURL,category:cat});
         });

@@ -1,9 +1,9 @@
 import axios from "axios";
 
+
 const BASE_URL = "http://localhost:4000/api/"
 
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.token;
-
+// const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.token;(maan lo delted hai)
 
 
 export const publicRequest = axios.create({
@@ -12,11 +12,12 @@ export const publicRequest = axios.create({
 
 export const userRequest = axios.create({
     baseURL:BASE_URL,
-    headers:{Authorization:`Bearar ${TOKEN}`}
+    // headers:{Authorization:`Bearar ${TOKEN}`}
 })
 
 
 // import axios from "axios";
+
 
 // const BASE_URL = "http://localhost:4000/api/";
 
@@ -43,7 +44,7 @@ export const userRequest = axios.create({
 
 // export const userRequest = (navigate) => {
 //   const token = getToken();
-
+// console.log(token);
 //   if (!token) {
 //     navigate("/login");
 //   }

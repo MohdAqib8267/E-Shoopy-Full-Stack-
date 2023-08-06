@@ -20,6 +20,7 @@ export default function FeaturedInfo() {
             Authorization:`Bearar ${TOKEN}`
           }
       })
+      console.log(income);
       setIncome(income.data);
       setPrec((income.data[1].total*100)/income.data[0].total-100);     //compare with prev month sale
       } catch (error) {

@@ -2,7 +2,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
 import Home from "./pages/home/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
@@ -10,19 +10,25 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/Login/Login";
+import { useSelector } from "react-redux";
 
 function App() {
 
-const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.others.isAdmin;
-// console.log(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.others.isAdmin);
+// const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)?.currentUser?.others?.isAdmin;
 
+const user=useSelector(state=>state.user);
+const admin=user.currentUser.others.isAdmin;
+// console.log(admin);
 // const admin=true;
   return (
     <Router> 
       <Switch>
-      <Route path="/login">
+      {/* <Route path="/login" element={admin ? <Home /> : <Login />}>
             <Login />
-      </Route>
+      </Route> */}
+      <Route path="/login">
+          {admin ? <Redirect to="/" /> : <Login />}
+        </Route>
       {admin && <>
       <Topbar />
       <div className="container">

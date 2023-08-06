@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 function verifyToken(req,res,next){
     let token = req.headers['authorization'];
+    // console.log(token);
     
     if(token){
         //check token is valid or not
